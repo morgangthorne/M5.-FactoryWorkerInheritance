@@ -8,29 +8,29 @@ using namespace std;
 
 int main()
 {
-    //Testing Employee Class
-    try {
-        Employee emp1("Morgan Thorne", 5, "01/15/2020");
-        cout << "Employee Information: " << endl;
-        emp1.PrintEmployee();
-    }
-    catch (Employee::InvalidEmployeeNumber e) {
-        cout << "Error: " << e.Message << endl;
-    }
+    int choice;
 
-    //ProductionWorker tests
-    try {
-        ProductionWorker wrk1("Snow White", 456, "02/10/2021", 1, 17.90);
-        cout << "Production Worker (Day Shift): " << endl;
-        wrk1.PrintProductionWorker();
-   }
-    catch (ProductionWorker::InvalidShift e) {
-        cout << "Error: " << e.Message << endl;
-    }
-    catch (ProductionWorker::InvalidPayRate e) {
-        cout << "Error: " << e.Message << endl;
-    }
+    do {
+        cout << "\n===== Factory Worker Menu =====" << endl;
+        cout << "1. Create Employee" << endl;
+        cout << "2. Create Production Worker" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter choice: ";
+        cin >> choice;
 
+        if (choice == 1) {
+            cout << "\nEmployee option selected\n";
+        }
+        else if (choice == 2) {
+            cout << "\nProduction Employee option selected\n";
+        }
+        else if (choice == 3) {
+            cout << "\nExit option\n";
+        }
+        else {
+            cout << "Invalid choice\n";
+        }
+    } while (choice != 3);
 
     return 0;
 }
