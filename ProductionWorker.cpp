@@ -11,7 +11,7 @@ ProductionWorker::ProductionWorker() : Employee() {
 
 //Parameterized constructor using the initializer list
 //This is constructor chaining to Employee
-ProductionWorker::ProductionWorker(string Name, string Num, string Date, int s, double Pay) : Employee(Name, Num, Date) {
+ProductionWorker::ProductionWorker(string Name, int Num, string Date, int s, double Pay) : Employee(Name, Num, Date) {
 	Shift = s;
 	HourlyPay = Pay;
 }

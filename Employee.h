@@ -8,7 +8,7 @@ using namespace std;
 class Employee {
 private:
 	string Name;
-	string EmployeeNumber;
+	int EmployeeNumber;
 	string HireDate;
 
 public:
@@ -16,16 +16,16 @@ public:
 	Employee();
 
 	//Param Constructor
-	Employee(string n, string Num, string Date);
+	Employee(string n, int Num, string Date);
 
 	//Mutators (setters)
 	void SetName(string n);
-	void SetEmployeeNumber(string Num);
+	void SetEmployeeNumber(int Num);
 	void SetHireDate(string Date);
 
 	//Accessors (getters)
 	string GetName() const;
-	string GetEmployeeNumber() const;
+	int GetEmployeeNumber() const;
 	string GetHireDate() const;
 
 	//Prints Employee info

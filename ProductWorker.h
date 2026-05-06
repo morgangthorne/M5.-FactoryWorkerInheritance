@@ -12,7 +12,7 @@ private:
 public:
 	//Constructors
 	ProductionWorker();
-	ProductionWorker(string Name, string Num, string Date, int s, double Pay);
+	ProductionWorker(string Name, int Num, string Date, int s, double Pay);
 
 	//Setters
 	void SetShift(int s);

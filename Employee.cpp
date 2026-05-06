@@ -10,14 +10,14 @@ using namespace std;
 //Post: Initializes members to empty strings
 Employee::Employee() {
 	Name = "";
-	EmployeeNumber = "";
+	EmployeeNumber = 0;
 	HireDate = "";
 }
 
 //Param Constructor
 //Pre: Valid String Provided
 //Post: Initializes all member variables
-Employee::Employee(string n, string Num, string Date) {
+Employee::Employee(string n, int Num, string Date) {
 	Name = n;
 	EmployeeNumber = Num;
 	HireDate = Date;
@@ -30,7 +30,7 @@ void Employee::SetName(string n) {
 	Name = n;
 }
 
-void Employee::SetEmployeeNumber(string Num) {
+void Employee::SetEmployeeNumber(int Num) {
 	EmployeeNumber = Num;
 }
 
@@ -45,7 +45,7 @@ string Employee::GetName() const {
 	return Name;
 }
 
-string Employee::GetEmployeeNumber() const {
+int Employee::GetEmployeeNumber() const {
 	return EmployeeNumber;
 }
 
