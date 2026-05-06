@@ -30,6 +30,11 @@ public:
 
 	//Prints Employee info
 	void PrintEmployee() const;
+
+	//Custom Exception Class
+	class InvalidEmployeeNumber {
+
+	};
 };
 
 #endif
