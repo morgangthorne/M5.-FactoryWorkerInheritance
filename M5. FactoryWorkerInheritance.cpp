@@ -3,12 +3,19 @@
 #include "ProductWorker.h"
 
 #include <iostream>
+#include <limits>
 
 using namespace std;
+
+void ClearInputBuffer() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
 
 int main()
 {
     int choice;
+
 
     do {
         cout << "\n===== Factory Worker Menu =====" << endl;
@@ -18,11 +25,19 @@ int main()
         cout << "Enter choice: ";
         cin >> choice;
 
+        if (cin.fail()) {
+            ClearInputBuffer();
+            cout << "Invalid menu input.\n";
+            continue;
+        }
+        
+        
         //Logic for creating Employee
         if (choice == 1) {
             string name;
-            int num;
             string date;
+            int num;
+            
 
             cout << "\nEnter Employee's Name: ";
             cin.ignore();
@@ -39,12 +54,16 @@ int main()
                     cout << "Enter Employee Number (0 - 9999): ";
                     cin >> num;
 
+                    if (cin.fail()) {
+                        throw Employee::InvalidEmployeeNumber("Invalid numeric input.");
+                    }
+
                     emp = new Employee(name, num, date);
                     valid = true;
                 }
                 catch (Employee::InvalidEmployeeNumber e) {
                     cout << "Error: " << e.Message << endl;
-                    cout << "Please re-enter a valid number.\n";
+                    ClearInputBuffer();
                 }
             }
 
@@ -56,8 +75,8 @@ int main()
         //Logic For Creating Production Worker
         else if (choice == 2) {
             string name;
-            int num;
             string date;
+            int num;
             int shift;
             double pay;
 
@@ -75,10 +94,14 @@ int main()
                     cout << "Enter Employee Number (0 - 9999): ";
                     cin >> num;
 
+                    if (cin.fail()) {
+                        throw Employee::InvalidEmployeeNumber("Invalid Numeric Input.");
+                    }
                     ValidEmp = true;
                 }
                 catch (Employee::InvalidEmployeeNumber e) {
                     cout << "Error: " << e.Message << endl;
+                    ClearInputBuffer();
                 }
             }
 
@@ -89,14 +112,19 @@ int main()
                     cout << "Enter Shift (1 = Day, 2 = Night): ";
                     cin >> shift;
 
+                    if (cin.fail()) {
+                        throw ProductionWorker::InvalidShift("Invalid Numeric Input.");
+                    }
+               
                     if (shift != 1 && shift != 2) {
                         throw ProductionWorker::InvalidShift("Shift must be 1 or 2.");
                     }
-               
+
                     ValidShift = true;
                 }
                 catch (ProductionWorker::InvalidShift e) {
                     cout << "Error: " << e.Message << endl;
+                    ClearInputBuffer();
                 }
             }
 
@@ -107,6 +135,10 @@ int main()
                     cout << "Enter Hourly Pay: ";
                     cin >> pay;
 
+                    if (cin.fail()) {
+                        throw ProductionWorker::InvalidPayRate("Invalid numeric input.");
+                    }
+
                     if (pay < 0) {
                         throw ProductionWorker::InvalidPayRate("Pay must be positive.");
                     }
@@ -115,6 +147,7 @@ int main()
                 }
                 catch (ProductionWorker::InvalidPayRate e) {
                     cout << "Error: " << e.Message << endl;
+                    ClearInputBuffer();
                 }
             }
 
