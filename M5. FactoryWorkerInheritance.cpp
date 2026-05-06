@@ -19,7 +19,38 @@ int main()
         cin >> choice;
 
         if (choice == 1) {
-            cout << "\nEmployee option selected\n";
+            string name;
+            int num;
+            string date;
+
+            cout << "\nEnter Employee's Name: ";
+            cin.ignore();
+            getline(cin, name);
+
+            cout << "Enter Their Hire Date: ";
+            getline(cin, date);
+
+            bool valid = false;
+            Employee* emp = nullptr;
+
+            while (!valid) {
+                try {
+                    cout << "Enter Employee Number (0 - 9999): ";
+                    cin >> num;
+
+                    emp = new Employee(name, num, date);
+                    valid = true;
+                }
+                catch (Employee::InvalidEmployeeNumber e) {
+                    cout << "Error: " << e.Message << endl;
+                    cout << "Please re-enter a valid number.\n";
+                }
+            }
+
+            cout << "\nEmployee Created:\n";
+            emp->PrintEmployee();
+
+            delete emp;
         }
         else if (choice == 2) {
             cout << "\nProduction Employee option selected\n";
