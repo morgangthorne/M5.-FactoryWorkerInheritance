@@ -11,17 +11,33 @@ ProductionWorker::ProductionWorker() : Employee() {
 
 //Parameterized constructor using the initializer list
 //This is constructor chaining to Employee
-ProductionWorker::ProductionWorker(string Name, int Num, string Date, int s, double Pay) : Employee(Name, Num, Date) {
+ProductionWorker::ProductionWorker(string Name, int Num, string Date, int s, double Pay) : Employee(Name, Num, Date)
+{
+	if (s != 1 && s != 2) {
+		throw InvalidShift("Shift must be 1 (Day) or 2 (Night).");
+	}
+	if (Pay < 0) {
+		throw InvalidPayRate("Pay rate cannot be negative.");
+	}
+
 	Shift = s;
 	HourlyPay = Pay;
 }
 
 //Setters
 void ProductionWorker::SetShift(int s) {
+	if (s != 1 && s != 2) {
+		throw InvalidShift("Shift must be 1 (Day) or 2 (Night).");
+	}
+
 	Shift = s;
 }
 
 void ProductionWorker::SetHourlyPay(double Pay) {
+	if (Pay < 0) {
+		throw InvalidPayRate("Pay rate cannot be negative.");
+	}
+
 	HourlyPay = Pay;
 }
 

@@ -14,6 +14,21 @@ public:
 	ProductionWorker();
 	ProductionWorker(string Name, int Num, string Date, int s, double Pay);
 
+	class InvalidShift {
+	public: 
+		string Message;
+		InvalidShift(string msg) { 
+			Message = msg; }
+	};
+
+	class InvalidPayRate {
+	public: 
+		string Message;
+		InvalidPayRate(string msg) {
+			Message = msg;
+		}
+	};
+
 	//Setters
 	void SetShift(int s);
 	void SetHourlyPay(double Pay);
@@ -24,6 +39,12 @@ public:
 
 	//Print Function
 	void PrintProductionWorker() const;
+
+
+
+
+
+
 };
 
 #endif
