@@ -10,7 +10,7 @@ int main()
 {
     //Testing Employee Class
     try {
-        Employee emp1("Morgan Thorne", -5, "01/15/2020");
+        Employee emp1("Morgan Thorne", 5, "01/15/2020");
         cout << "Employee Information: " << endl;
         emp1.PrintEmployee();
     }
@@ -19,16 +19,18 @@ int main()
     }
 
     //ProductionWorker tests
-    ProductionWorker worker1("Alice Smith", 456, "02/10/2021", 1, 17.90);
-    ProductionWorker worker2("Ricky Bobby", 789, "07/18/2019", 2, 21.25);
+    try {
+        ProductionWorker wrk1("Snow White", 456, "02/10/2021", 1, 17.90);
+        cout << "Production Worker (Day Shift): " << endl;
+        wrk1.PrintProductionWorker();
+   }
+    catch (ProductionWorker::InvalidShift e) {
+        cout << "Error: " << e.Message << endl;
+    }
+    catch (ProductionWorker::InvalidPayRate e) {
+        cout << "Error: " << e.Message << endl;
+    }
 
-    cout << "Production Worker (Day Shift):" << endl;
-    worker1.PrintProductionWorker();
-
-    cout << "\n----------------------\n";
-
-    cout << "Production Worker (Night Day):" << endl;
-    worker2.PrintProductionWorker();
 
     return 0;
 }
