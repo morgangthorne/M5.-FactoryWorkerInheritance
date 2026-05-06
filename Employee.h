@@ -33,7 +33,12 @@ public:
 
 	//Custom Exception Class
 	class InvalidEmployeeNumber {
+	public:
+		string Message;
 
+		InvalidEmployeeNumber(string msg) {
+			Message = msg;
+		}
 	};
 };
 
