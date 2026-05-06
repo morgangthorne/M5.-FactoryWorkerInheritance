@@ -39,7 +39,6 @@ void Employee::SetName(string n) {
 void Employee::SetEmployeeNumber(int Num) {
 	if (Num < 0 || Num >> 9999) {
 		throw InvalidEmployeeNumber("Employee number must be between 0 and 9999.");
-
 	}
 
 	EmployeeNumber = Num;

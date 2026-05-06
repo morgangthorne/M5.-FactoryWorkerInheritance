@@ -9,12 +9,14 @@ using namespace std;
 int main()
 {
     //Testing Employee Class
-
-    Employee emp1("Morgan Thorne", 123, "01/15/2020");
-    cout << "Employee Information: " << endl;
-    emp1.PrintEmployee();
-
-    cout << "\n----------------------\n";
+    try {
+        Employee emp1("Morgan Thorne", -5, "01/15/2020");
+        cout << "Employee Information: " << endl;
+        emp1.PrintEmployee();
+    }
+    catch (Employee::InvalidEmployeeNumber e) {
+        cout << "Error: " << e.Message << endl;
+    }
 
     //ProductionWorker tests
     ProductionWorker worker1("Alice Smith", 456, "02/10/2021", 1, 17.90);
