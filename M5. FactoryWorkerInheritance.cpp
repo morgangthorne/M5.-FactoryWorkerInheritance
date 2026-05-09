@@ -7,13 +7,12 @@ using namespace std;
 
 int main()
 {
-    //Testing Employee Class
+    Employee employee1("Morgan Thorne", "102", "5/9/2026");
 
-    Employee emp1("Morgan Thorne", "123-A", "01/15/2020");
+    employee1.PrintEmployee();
 
-    cout << "Employee Information: " << endl;
+    return 0;
 
-    emp1.PrintEmployee();
 }
 
 
