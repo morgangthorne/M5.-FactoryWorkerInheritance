@@ -7,10 +7,9 @@
 
 using namespace std;
 
-void ClearInputBuffer() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
+void ClearInputBuffer();
+bool IsNumberString(const string& s);
+bool IsValidDate(const string& date);
 
 int main()
 {
@@ -24,13 +23,13 @@ int main()
         cout << "3. Exit" << endl;
         cout << "Enter choice: ";
         cin >> choice;
-
+        
         if (cin.fail()) {
             ClearInputBuffer();
             cout << "Invalid menu input.\n";
             continue;
         }
-        
+        ClearInputBuffer();
         
         //Logic for creating Employee
         if (choice == 1) {
@@ -38,14 +37,37 @@ int main()
             string date;
             int num;
             
+            //Validation for Employee Name
+            bool validName = false;
 
-            cout << "\nEnter Employee's Name: ";
-            cin.ignore();
-            getline(cin, name);
+            while (!validName) {
+                cout << "Enter Employee Name: ";
+                getline(cin, name);
+                
+                if (IsNumberString(name)) {
+                    cout << "Error: Name cannot be numeric.\n";
+                }
+                else {
+                    validName = true;
+                }
+            }
+            
+            //Validation for Date
+            bool validDate = false;
 
-            cout << "Enter Their Hire Date: ";
-            getline(cin, date);
+            while (!validDate) {
+                cout << "Enter Hire Date (MM/DD/YYYY): ";
+                getline(cin, date);
 
+                if (!IsValidDate(date)) {
+                    cout << "Error: Invalid date format.\n";
+                }
+                else {
+                    validDate = true;
+                }
+            }
+
+            //Validation for Employee number
             bool valid = false;
             Employee* emp = nullptr;
 
@@ -53,6 +75,7 @@ int main()
                 try {
                     cout << "Enter Employee Number (0 - 9999): ";
                     cin >> num;
+                    ClearInputBuffer();
 
                     if (cin.fail()) {
                         throw Employee::InvalidEmployeeNumber("Invalid numeric input.");
@@ -79,13 +102,36 @@ int main()
             int num;
             int shift;
             double pay;
+            
+            //Validation for Production Worker Name
+            bool validName = false;
 
-            cout << "\nEnter Employee Name: ";
-            cin.ignore();
-            getline(cin, name);
+            while (!validName) {
+                cout << "Enter Employee Name: ";
+                getline(cin, name);
 
-            cout << "Enter Hire Date: ";
-            getline(cin, date);
+                if (IsNumberString(name)) {
+                    cout << "Error: Name cannot be numeric.\n";
+                }
+                else {
+                    validName = true;
+                }
+            }
+            
+            //Validation for Production Employee Date
+            bool validDate = false;
+
+            while (!validDate) {
+                cout << "Enter Hire Date (MM/DD/YYYY): ";
+                getline(cin, date);
+
+                if (!IsValidDate(date)) {
+                    cout << "Error: Invalid date format.\n";
+                }
+                else {
+                    validDate = true;
+                }
+            }
 
             //Employee Number Validation
             bool ValidEmp = false; 
@@ -93,6 +139,7 @@ int main()
                 try {
                     cout << "Enter Employee Number (0 - 9999): ";
                     cin >> num;
+                    ClearInputBuffer();
 
                     if (cin.fail()) {
                         throw Employee::InvalidEmployeeNumber("Invalid Numeric Input.");
@@ -111,6 +158,7 @@ int main()
                 try {
                     cout << "Enter Shift (1 = Day, 2 = Night): ";
                     cin >> shift;
+                    ClearInputBuffer();
 
                     if (cin.fail()) {
                         throw ProductionWorker::InvalidShift("Invalid Numeric Input.");
@@ -134,6 +182,7 @@ int main()
                 try {
                     cout << "Enter Hourly Pay: ";
                     cin >> pay;
+                    ClearInputBuffer();
 
                     if (cin.fail()) {
                         throw ProductionWorker::InvalidPayRate("Invalid numeric input.");
@@ -168,4 +217,25 @@ int main()
     return 0;
 }
 
+void ClearInputBuffer() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+bool IsNumberString(const string& s) {
+    for (char c : s) {
+        if (!isdigit(c)) return false;
+    }
+    return true;
+}
+
+bool IsValidDate(const string& date) {
+    int SlashCount = 0;
+
+    for (char c : date) {
+        if (c == '/') SlashCount++;
+    }
+
+    return SlashCount == 2;
+}
 
