@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Employee.h"
+#include "ProductionWorker.h"
 
 #include <iostream>
 
@@ -7,11 +8,19 @@ using namespace std;
 
 int main()
 {
-    Employee employee1("Morgan Thorne", "102", "5/9/2026");
+    ProductionWorker DayWorker("Morgan Thorne", "210", "6/27/2003", 1, 15.60);
 
-    employee1.PrintEmployee();
+    ProductionWorker NightWorker("John Doe", "212", "5/05/2005", 1, 17.38);
 
-    return 0;
+    cout << "Day Shift Worker" << endl;
+    DayWorker.PrintProductionWorker();
+
+    cout << endl;
+
+    cout << "Night Shift Worker" << endl;
+    NightWorker.PrintProductionWorker();
+
+    return 0; 
 
 }
 
